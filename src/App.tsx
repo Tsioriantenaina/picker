@@ -1,26 +1,28 @@
-import React from 'react';
-import logo from './logo.svg';
-import './App.css';
+import React, { useState } from "react";
+import "./App.css";
+import MenuList from "./components/MenuList/MenuList";
+import DisplayDifficulty from "./components/DisplayDifficulty/DisplayDifficulty";
+
+export const lists = ["low", "Medium", "Hard", "Insane"] as string[];
 
 function App() {
-  return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.tsx</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
-  );
+	const [dificulty, setDificulty] = useState<string>("");
+
+	const handleMenuItemClick = (list: string) => {
+		setDificulty(list);
+	};
+	return (
+		<>
+			<h1 style={{ textAlign: "center" }}>Choose your React course difficulty</h1>
+			<div className="App">
+				<MenuList
+					dificulty={dificulty}
+					handleMenuItemClick={handleMenuItemClick}
+				/>
+				<DisplayDifficulty dificulty={dificulty} />
+			</div>
+		</>
+	);
 }
 
 export default App;
